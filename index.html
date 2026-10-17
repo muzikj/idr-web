@@ -206,8 +206,8 @@
 		<nav aria-label="Main navigation">
 			<a href="#report-overview">Overview</a>
 			<a href="#report-pages">Report pages</a>
-			<a href="#how-it-works">How it works</a>
 			<a href="#evaluation">Evaluation</a>
+			<a href="#how-it-works">How it works</a>
 			<a class="nav-cta" href="#report-reference">Article reference <span aria-hidden="true">↗</span></a>
 		</nav>
 	</header>
@@ -241,7 +241,7 @@
 					<div class="band-label">REPORT OVERVIEW</div>
 					<h2>Diabetes information, together in one view.</h2>
 				</div>
-				<p>The IDR is a compact, two-page summary that integrates continuous glucose monitoring (CGM), insulin, carbohydrate intake, and physical activity. Glucose is summarized across five consensus ranges: below 3.0, 3.0–3.8, 3.9–10.0, 10.1–13.9, and above 13.9 mmol/L. Its 24-hour glucose percentile profile represents the 5th, 25th, 50th, 75th, and 95th glucose percentiles in 15-minute time-of-day bins. Mean carbohydrate intake, steps, and exercise minutes add daily context. Basal, meal-bolus, and correction-bolus insulin doses are shown on the same 24-hour time axis; a separate insulin profile compares seven formula-derived indices with values calculated from recorded doses.</p>
+				<p>The IDR is a compact, two-page summary that integrates continuous glucose monitoring (CGM), insulin, carbohydrate intake, and physical activity. Glucose is summarized across five consensus ranges: below 3.0, 3.0–3.8, 3.9–10.0, 10.1–13.9, and above 13.9 mmol/L. Its 24-hour glucose percentile profile represents the 5th, 25th, 50th, 75th, and 95th glucose percentiles in 15-minute time-of-day bins. Mean carbohydrate intake, steps, and exercise minutes add daily context. Basal, meal-bolus, and correction-bolus insulin doses are shown on the same 24-hour time axis; a separate insulin profile compares seven formula-derived indices with values calculated from recorded doses. The report was first designed from a review of existing diabetes monitoring systems, then assessed by diabetes experts, revised according to their suggestions, and finally implemented in a telemedicine platform and tested on real patient data.</p>
 			</div>
 		</section>
 
@@ -272,22 +272,6 @@
 				<p>The figures show one anonymised patient over a 14-day period in February 2023, generated from real data in the Diani telemedicine platform and used with permission under the ethics approval of the study. Only an internal study identifier is displayed. Diabetes type, diabetes duration, date of birth and treating physician are not stored in the platform and appear as manual input fields.</p>
 				<p>This is the report version revised after the expert evaluation described below. The design published in the article referenced at the end of this page is the earlier version.</p>
 			</div>
-		</section>
-
-		<section class="wrap section" id="how-it-works">
-			<div class="section-heading">
-				<div>
-					<div class="section-kicker">HOW IT WORKS</div>
-					<h2>From platform data to a printed report.</h2>
-				</div>
-				<p>The report is generated automatically, with no manual data entry.</p>
-			</div>
-			<p class="prose">The IDR is produced by a web application written in R. A clinician signs in with their own account on the Diani telemedicine platform, enters the patient identifier, the reporting period and the body weight, and may adjust the clinical parameters used for the calculated insulin values. The application reads the data in real time from the platform's interface, generates the report, displays it, and offers it for download as HTML or PDF. Both versions share one print layout, so the report always prints on two A4 pages.</p>
-			<p class="prose">Glucose values come from continuous glucose monitoring, insulin doses and carbohydrate intake from the patient's diary entries, and step counts from a connected activity tracker. Information that the platform does not hold &mdash; diabetes type, diabetes duration, date of birth, treating physician and complications &mdash; is entered by the clinician and marked in the report as manual input. The application runs as a container on a server inside the clinical network; patient data, generated reports and credentials are never stored in the source repository or the container image.</p>
-			<figure class="wide-figure">
-				<img src="images/how-it-works.png" alt="Diagram: the clinician's browser and the Diani patient page on the left, a container holding the web application, the analysis functions and the report template in the middle, and the Diani data interface on the right" loading="lazy">
-				<figcaption><strong>How the report is generated</strong>The application, the analysis functions and the report template run as one service that reads the platform through its data interface.</figcaption>
-			</figure>
 		</section>
 
 		<section class="wrap section" id="insulin-parameters">
@@ -379,6 +363,22 @@
 			<p class="prose" style="margin-top:18px;">The second open question referred to a section that was later replaced by the diabetes complications section, so those answers are interpreted with caution.</p>
 		</section>
 
+		<section class="wrap section" id="how-it-works">
+			<div class="section-heading">
+				<div>
+					<div class="section-kicker">HOW IT WORKS</div>
+					<h2>From platform data to a printed report.</h2>
+				</div>
+				<p>The report is generated automatically, with no manual data entry.</p>
+			</div>
+			<p class="prose">The IDR is produced by a web application written in R. A clinician signs in with their own account on the Diani telemedicine platform, enters the patient identifier, the reporting period and the body weight, and may adjust the clinical parameters used for the calculated insulin values. The application reads the data in real time from the platform's interface, generates the report, displays it, and offers it for download as HTML or PDF. Both versions share one print layout, so the report always prints on two A4 pages.</p>
+			<p class="prose">Glucose values come from continuous glucose monitoring, insulin doses and carbohydrate intake from the patient's diary entries, and step counts from a connected activity tracker. Information that the platform does not hold &mdash; diabetes type, diabetes duration, date of birth, treating physician and complications &mdash; is entered by the clinician and marked in the report as manual input. The application runs as a container on a server inside the clinical network; patient data, generated reports and credentials are never stored in the source repository or the container image.</p>
+			<figure class="wide-figure">
+				<img src="images/how-it-works.png" alt="Diagram: the clinician's browser and the Diani patient page on the left, a container holding the web application, the analysis functions and the report template in the middle, and the Diani data interface on the right" loading="lazy">
+				<figcaption><strong>How the report is generated</strong>The application, the analysis functions and the report template run as one service that reads the platform through its data interface.</figcaption>
+			</figure>
+		</section>
+
 		<section class="wrap section" id="report-reference">
 			<div class="section-heading">
 				<div>
@@ -406,12 +406,13 @@
 			<div class="about-grid">
 				<div>
 					<h3>Design and development</h3>
-					<p>The Integrated Diabetes Report was designed and developed by Tahmineh Aldaghi, Institute of Biophysics and Informatics, First Faculty of Medicine, Charles University, Prague, as part of doctoral research on diabetes monitoring and telemedicine reporting. The published design article was written with Robert B&eacute;m and Jan Mu&zcaron;&iacute;k.</p>
+					<p>The Integrated Diabetes Report was designed and developed by Tahmineh Aldaghi, Institute of Biophysics and Informatics, First Faculty of Medicine, Charles University, Prague, as part of doctoral research on diabetes monitoring and telemedicine reporting, supervised by Jan Mu&zcaron;&iacute;k. The published design article was written with Robert B&eacute;m and Jan Mu&zcaron;&iacute;k.</p>
 					<p style="margin-top:10px;">Contact: <a href="mailto:tahmineh1989@gmail.com" style="color:var(--green);text-underline-offset:3px;">tahmineh1989@gmail.com</a></p>
 				</div>
 				<div>
 					<h3>Implementation</h3>
-					<p>The report is implemented in the Diani telemedicine platform, which collects continuous glucose monitoring, diary and activity-tracker data from connected sources. The application was deployed on a Diani test server in cooperation with the platform team.</p>
+					<p>The analysis functions, the report template and the web application were implemented by Tahmineh Aldaghi, under the supervision of Jan Mu&zcaron;&iacute;k, with Marek Doksansk&yacute; of the Diani team supporting the work on the platform side and the deployment on the Diani test server.</p>
+					<p style="margin-top:10px;">The platform collects continuous glucose monitoring, diary and activity-tracker data from the devices and applications connected to it.</p>
 				</div>
 			</div>
 			<div class="notice">
