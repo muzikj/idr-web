@@ -6,6 +6,13 @@
 	<meta name="theme-color" content="#f3f5ef">
 	<meta name="description" content="The Integrated Diabetes Report (IDR) combines continuous glucose monitoring, insulin, carbohydrate and physical activity information.">
 	<title>IDR | Integrated Diabetes Report</title>
+	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23244e3a'/%3E%3Ctext x='16' y='20.5' font-family='Helvetica,Arial,sans-serif' font-size='10.5' font-weight='700' fill='%23d7ef78' text-anchor='middle'%3EIDR%3C/text%3E%3C/svg%3E">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="http://idr.albertov.cz/">
+	<meta property="og:title" content="Integrated Diabetes Report (IDR)">
+	<meta property="og:description" content="A two-page report bringing continuous glucose monitoring, insulin, carbohydrate intake and physical activity together in one view.">
+	<meta property="og:image" content="http://idr.albertov.cz/images/article-figure-4.png">
+	<meta name="twitter:card" content="summary_large_image">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -122,6 +129,32 @@
 		.footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; color: #65736a; font-size: 10px; }
 		.footer-name { color: var(--ink); font: 600 11px var(--mono); }
 
+		.prose { max-width: 720px; margin: 0; color: var(--muted); font-size: 15px; line-height: 1.85; }
+		.prose + .prose { margin-top: 15px; }
+		.prose strong { color: var(--ink); }
+		.table-scroll { margin-top: 26px; overflow-x: auto; }
+		.data-table { width: 100%; min-width: 520px; border-collapse: collapse; }
+		.data-table th, .data-table td { padding: 12px 16px 12px 0; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; font-size: 13px; line-height: 1.6; }
+		.data-table th { color: var(--ink); font: 600 11px var(--display); letter-spacing: .04em; text-transform: uppercase; border-bottom: 1px solid var(--ink); }
+		.data-table td { color: var(--muted); }
+		.data-table td.code { color: var(--green); font: 500 12px var(--mono); white-space: nowrap; }
+		.data-table td.term { color: var(--ink); font-weight: 600; }
+		.data-table tbody tr:last-child td { border-bottom: 0; }
+		.wide-figure { margin: 30px 0 0; }
+		.wide-figure img { display: block; width: 100%; height: auto; background: var(--white); border: 1px solid var(--line); }
+		.wide-figure figcaption { padding-top: 12px; color: var(--muted); font-size: 12px; line-height: 1.6; }
+		.notice { margin-top: 30px; padding: 22px 24px; background: var(--white); border: 1px solid var(--line); border-left: 3px solid var(--coral); }
+		.notice h3 { margin: 0 0 8px; font: 600 13px var(--display); }
+		.notice p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.75; }
+		.notice p + p { margin-top: 10px; }
+		.about-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 34px; }
+		.about-grid h3 { margin: 0 0 8px; font: 600 13px var(--display); }
+		.about-grid p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.75; }
+		.open-questions { margin: 22px 0 0; padding-left: 18px; color: var(--muted); font-size: 13px; line-height: 1.75; }
+		.open-questions li { margin-bottom: 8px; padding-left: 4px; }
+		.download-row { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin-top: 26px; }
+		@media (max-width: 800px) { .about-grid { grid-template-columns: 1fr; gap: 24px; } }
+
 		@keyframes arrive { from { opacity: 0; translate: 0 12px; } to { opacity: 1; translate: 0 0; } }
 		@media (prefers-reduced-motion: reduce) {
 			*, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
@@ -173,6 +206,8 @@
 		<nav aria-label="Main navigation">
 			<a href="#report-overview">Overview</a>
 			<a href="#report-pages">Report pages</a>
+			<a href="#how-it-works">How it works</a>
+			<a href="#evaluation">Evaluation</a>
 			<a class="nav-cta" href="#report-reference">Article reference <span aria-hidden="true">↗</span></a>
 		</nav>
 	</header>
@@ -228,6 +263,116 @@
 					<figcaption><strong>Insulin detail</strong>Insulin events, daily patterns, and profile parameters.</figcaption>
 				</figure>
 			</div>
+			<div class="download-row">
+				<a class="button" href="IDR_example_report.pdf" target="_blank" rel="noreferrer">Download the example report (PDF) <span aria-hidden="true">&#8595;</span></a>
+				<span style="color:var(--muted);font-size:12px;">Two pages, A4.</span>
+			</div>
+			<div class="notice">
+				<h3>About the example shown</h3>
+				<p>The figures show one anonymised patient over a 14-day period in February 2023, generated from real data in the Diani telemedicine platform and used with permission under the ethics approval of the study. Only an internal study identifier is displayed. Diabetes type, diabetes duration, date of birth and treating physician are not stored in the platform and appear as manual input fields.</p>
+				<p>This is the report version revised after the expert evaluation described below. The design published in the article referenced at the end of this page is the earlier version.</p>
+			</div>
+		</section>
+
+		<section class="wrap section" id="how-it-works">
+			<div class="section-heading">
+				<div>
+					<div class="section-kicker">HOW IT WORKS</div>
+					<h2>From platform data to a printed report.</h2>
+				</div>
+				<p>The report is generated automatically, with no manual data entry.</p>
+			</div>
+			<p class="prose">The IDR is produced by a web application written in R. A clinician signs in with their own account on the Diani telemedicine platform, enters the patient identifier, the reporting period and the body weight, and may adjust the clinical parameters used for the calculated insulin values. The application reads the data in real time from the platform's interface, generates the report, displays it, and offers it for download as HTML or PDF. Both versions share one print layout, so the report always prints on two A4 pages.</p>
+			<p class="prose">Glucose values come from continuous glucose monitoring, insulin doses and carbohydrate intake from the patient's diary entries, and step counts from a connected activity tracker. Information that the platform does not hold &mdash; diabetes type, diabetes duration, date of birth, treating physician and complications &mdash; is entered by the clinician and marked in the report as manual input. The application runs as a container on a server inside the clinical network; patient data, generated reports and credentials are never stored in the source repository or the container image.</p>
+		</section>
+
+		<section class="wrap section" id="insulin-parameters">
+			<div class="section-heading">
+				<div>
+					<div class="section-kicker">INSULIN PROFILE</div>
+					<h2>What the parameters mean.</h2>
+				</div>
+				<p>Seven indices summarise how insulin is distributed across the day.</p>
+			</div>
+			<p class="prose">Each parameter appears twice in the report. The <strong>calculated</strong> value follows published dosing formulas and serves as a reference; the <strong>real</strong> value is derived from the doses the patient actually recorded. Comparing the two shows where recorded treatment departs from the formula-based expectation.</p>
+			<div class="table-scroll">
+				<table class="data-table">
+					<thead>
+						<tr><th>Code</th><th>Parameter</th><th>Unit</th><th>Meaning</th></tr>
+					</thead>
+					<tbody>
+						<tr><td class="code">TAID</td><td class="term">Total average insulin dose</td><td>IU/day</td><td>All insulin given per day, basal plus bolus.</td></tr>
+						<tr><td class="code">ABaD</td><td class="term">Average basal dose</td><td>IU/day</td><td>Long-acting background insulin per day.</td></tr>
+						<tr><td class="code">ABoD</td><td class="term">Average bolus dose</td><td>IU/day</td><td>Meal and correction insulin per day.</td></tr>
+						<tr><td class="code">ICR</td><td class="term">Insulin-to-carbohydrate ratio</td><td>g/IU</td><td>Grams of carbohydrate covered by one unit of insulin.</td></tr>
+						<tr><td class="code">CD</td><td class="term">Correction dose</td><td>IU/day</td><td>Insulin given per day to bring glucose back to target.</td></tr>
+						<tr><td class="code">ICF</td><td class="term">Insulin correction factor</td><td>mmol/L per IU</td><td>Expected fall in glucose after one unit of insulin.</td></tr>
+						<tr><td class="code">IDF</td><td class="term">Insulin dose for food</td><td>IU/day</td><td>Insulin given per day to cover carbohydrate intake.</td></tr>
+					</tbody>
+				</table>
+			</div>
+			<p class="prose" style="margin-top:22px;">The insulin correction factor is reported only when at least five isolated correction boluses are available in the period, so that the value rests on enough observations. Where data are insufficient, the report states this instead of showing a number.</p>
+		</section>
+
+		<section class="wrap section" id="evaluation">
+			<div class="section-heading">
+				<div>
+					<div class="section-kicker">EVALUATION</div>
+					<h2>Assessed by diabetes experts.</h2>
+				</div>
+				<p>Eight experts rated the report and their comments shaped the current version.</p>
+			</div>
+			<p class="prose">Eight experts &mdash; six diabetologists, one general physician and one researcher, all with previous experience of telemedicine diabetes reports &mdash; assessed the report between October 2025 and March 2026. The questionnaire was based on the Unified Theory of Acceptance and Use of Technology (UTAUT) and covered four constructs: performance expectancy, effort expectancy, social influence and facilitating conditions.</p>
+			<p class="prose">All four construct scores were above the neutral midpoint of the scale, although no construct differed significantly from neutral. For performance expectancy, facilitating conditions and effort expectancy the effect sizes were large, indicating a <strong>consistent positive tendency</strong> that this small sample could not confirm statistically. For social influence the effect was small, reflecting divided opinions. The item most often disagreed with was the statement that the report can be used without additional training, and two experienced respondents judged the report to add little over the reports they already use. The written comments were assessed for relevance and feasibility and then used to revise the report: the minimum and maximum glucose with their date and time were added, abbreviations were given their full names and units, insulin was split into basal, meal bolus and correction bolus by time of day, calculated values were kept only as reference values alongside explanatory data notes, and the fonts and colours were adjusted for readability.</p>
+			<figure class="wide-figure">
+				<img src="images/evaluation-items.png" alt="Diverging stacked bar chart of expert agreement with the sixteen questionnaire items, grouped by the four UTAUT constructs" loading="lazy">
+				<figcaption><strong>Expert ratings of the sixteen questionnaire items (n = 8)</strong>Responses are grouped by construct; neutral answers are centred on zero.</figcaption>
+			</figure>
+			<p class="prose" style="margin-top:26px;">A paper describing the expert evaluation and the implementation of the revised report is in preparation.</p>
+		</section>
+
+		<section class="wrap section" id="questionnaire">
+			<div class="section-heading">
+				<div>
+					<div class="section-kicker">QUESTIONNAIRE</div>
+					<h2>What the experts were asked.</h2>
+				</div>
+				<p>The full instrument, published here for transparency.</p>
+			</div>
+			<p class="prose">The questionnaire had three parts: six background questions, the sixteen statements below, each answered on a five-point agreement scale, and four open questions. It was distributed as an online form. Data collection ran from October 2025 to March 2026 and is closed; the form is no longer open for responses.</p>
+			<div class="table-scroll">
+				<table class="data-table">
+					<thead>
+						<tr><th>Construct</th><th>Code</th><th>Statement</th></tr>
+					</thead>
+					<tbody>
+						<tr><td class="term">Performance expectancy (PE)</td><td class="code">PE1</td><td>The proposed report can decrease the time needed for each patient, leading to more patients.</td></tr>
+						<tr><td class="term"></td><td class="code">PE2</td><td>Using the proposed report improves the quality of the work I do.</td></tr>
+						<tr><td class="term"></td><td class="code">PE3</td><td>Using this proposed report will improve clinical outcomes for my patients.</td></tr>
+						<tr><td class="term"></td><td class="code">PE4</td><td>Using this report will enhance my patient satisfaction in the process of treatment.</td></tr>
+						<tr><td class="term">Effort expectancy (EE)</td><td class="code">EE1</td><td>I find the report easy to understand and interpret.</td></tr>
+						<tr><td class="term"></td><td class="code">EE2</td><td>The information in the report is presented clearly and straightforwardly.</td></tr>
+						<tr><td class="term"></td><td class="code">EE3</td><td>I feel confident using the report without additional training or support.</td></tr>
+						<tr><td class="term"></td><td class="code">EE4</td><td>It would be easy for me to become skillful at using the report.</td></tr>
+						<tr><td class="term">Social influence (SI)</td><td class="code">SI1</td><td>Other endocrinologists think I should use this report.</td></tr>
+						<tr><td class="term"></td><td class="code">SI2</td><td>Using this report aligns with the expectations of the medical community.</td></tr>
+						<tr><td class="term"></td><td class="code">SI3</td><td>The healthcare organization I work for expects me to use tools like this report for patient management.</td></tr>
+						<tr><td class="term"></td><td class="code">SI4</td><td>Using this report would enhance my professional reputation among peers.</td></tr>
+						<tr><td class="term">Facilitating conditions (FC)</td><td class="code">FC1</td><td>I believe adequate training would be provided to help me understand and use this report effectively.</td></tr>
+						<tr><td class="term"></td><td class="code">FC2</td><td>This report seems compatible with the existing tools or systems I use for diabetes management.</td></tr>
+						<tr><td class="term"></td><td class="code">FC3</td><td>If implemented, I would expect reliable technical support for using this report.</td></tr>
+						<tr><td class="term"></td><td class="code">FC4</td><td>I believe the necessary infrastructure (e.g., software, devices) would be available to use this report effectively.</td></tr>
+					</tbody>
+				</table>
+			</div>
+			<p class="prose" style="margin-top:26px;"><strong>Open questions.</strong> Each section of the report had its own free-text question:</p>
+			<ol class="open-questions">
+				<li>What is your opinion about the &ldquo;Glucose Statistics&rdquo; section? We would appreciate your suggestions and comments on how this part could be improved.</li>
+				<li>What is your opinion about the &ldquo;Medicine&rdquo; section? We would appreciate your suggestions and comments on how this part could be improved.</li>
+				<li>What is your opinion about the &ldquo;Insulin Profile&rdquo; section? We would appreciate your suggestions and comments on how this part could be improved.</li>
+				<li>What is your overall opinion about the &ldquo;New Report&rdquo;? We would appreciate your suggestions and comments on how this part could be improved.</li>
+			</ol>
+			<p class="prose" style="margin-top:18px;">The second open question referred to a section that was later replaced by the diabetes complications section, so those answers are interpreted with caution.</p>
 		</section>
 
 		<section class="wrap section" id="report-reference">
@@ -244,6 +389,31 @@
 					<p>Original article introducing the report.</p>
 				</li>
 			</ol>
+		</section>
+
+		<section class="wrap section" id="about">
+			<div class="section-heading">
+				<div>
+					<div class="section-kicker">ABOUT</div>
+					<h2>Who made the IDR.</h2>
+				</div>
+				<p>Research work, openly documented.</p>
+			</div>
+			<div class="about-grid">
+				<div>
+					<h3>Design and development</h3>
+					<p>The Integrated Diabetes Report was designed and developed by Tahmineh Aldaghi, Institute of Biophysics and Informatics, First Faculty of Medicine, Charles University, Prague, as part of doctoral research on diabetes monitoring and telemedicine reporting. The published design article was written with Robert B&eacute;m and Jan Mu&zcaron;&iacute;k.</p>
+				</div>
+				<div>
+					<h3>Implementation</h3>
+					<p>The report is implemented in the Diani telemedicine platform, which collects continuous glucose monitoring, diary and activity-tracker data from connected sources. The application was deployed on a Diani test server in cooperation with the platform team.</p>
+				</div>
+			</div>
+			<div class="notice">
+				<h3>Status and intended use</h3>
+				<p>The IDR is a research prototype, developed and evaluated for scientific purposes. It is not a certified medical device and must not be used for diagnosis, for treatment decisions, or for any other clinical purpose.</p>
+				<p>The calculated insulin values shown in the report are reference values obtained from published formulas. They are not dosing recommendations, and any treatment decision remains with the treating physician.</p>
+			</div>
 		</section>
 	</main>
 
